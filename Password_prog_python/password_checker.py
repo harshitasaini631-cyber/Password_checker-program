@@ -1,0 +1,51 @@
+def password_strength(password): #function defined. Takes one argument i.e, (password)
+    score = 0 #starting point is 0 of the score
+    suggestions = [] #empty list to store suggestions of how strong a assword should be.
+    
+    #To check length of the password
+    if len(password) >= 12:
+        score += 2 #if greater than 12 or equal then it will add +2 to the score
+    elif len(password) >= 8:
+        score += 1 #if greater than 9 or equal then it will add +1
+    else:
+        suggestions.append("Use at least 8 characters or more") #append -> to add an element to the end of a list. suggestions is an empty list. It will print else condition if the password is shorter than 8.
+        
+     
+     # to check uppercase   
+    has_upper = False
+
+    if any(c.isupper() for c in password):
+            score += 1 #checks if any character is uppercase, if yes then adds +1 to score and if not then it will execute else statement.
+    else:
+     suggestions.append("Add at least one uppercase letter.")
+     
+     
+    #to check if password contains lowercase 
+    if any(c.islower() for c in password):
+        score += 1
+    else:
+        suggestions.append("Add at least one lowercase letter.")
+    
+    
+    #to check if password contains digit check
+    if any(c.isdigit() for c in password):
+            score += 1
+    else:
+        suggestions.append("Add at least one number.")
+        
+    #to check for any special character
+        # Special character check
+    if any(not c.isalnum() for c in password): #isalnum checks if a character is alphanumeric . (A-Z or digit 0-9)
+        score += 2 #is alnum is true if c is a letter or number. not c isalnum true if it doesnt contain any letter or number. not is what makes it to check for special characters.
+    else:
+        suggestions.append("Add at least one special character (!, @, #, $, etc.).")
+    
+    
+    #fnal score
+    score = max(0,min(score,8)) #score will be b/w 0 and 8 only. wont be more as score itself starts from 0 , so its basically 0-8.
+    #max 0 to make sure its not negative
+  
+       
+
+         
+        
