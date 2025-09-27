@@ -48,15 +48,15 @@ def password_strength(password): #function defined. Takes one argument i.e, (pas
     
     #To check the strength level
     if score <= 2:
-        strength = "very weak"
+        strength = "Very Weak"
     elif score <= 4:
-        strength = "weak"  
+        strength = "Weak"  
     elif score <=6:
         strength = "Moderate"      
     elif score == 7:
         strength = "Strong"    
     else:
-        strength = "very strong"    
+        strength = "Very Strong"    
         
     return{
         "password" : password, #returns with original password
@@ -64,6 +64,19 @@ def password_strength(password): #function defined. Takes one argument i.e, (pas
         "strength" : strength, #returns thestrength
         "suggestions" : suggestions if suggestions else ["Strong Password"] #returns suggestions if password is weak , if not then returns strong passsword.
     }    
+#program to generate strong password.
+  
+def password_generate(length=12):
+    letters = string.ascii_letters #prints abc...ABC
+    numbers = string.digits #prints 012345...    
+    symbols = string.punctuation #prints !@#$%...
+
+    all_char = letters + numbers + symbols
+    password = "" #empty string to store the new genrated password
+
+    for i in range(length):
+        password = password + random.choice(all_char) #choose random choice od symbols, words and numbers to generate new password.
+    return password    
 
 
 password = input("Enter a password:")  #input by user
@@ -77,9 +90,14 @@ print("Suggestions:")
 for s in result["suggestions"]:
     print(" -", s)
 
+if result ["strength"] in ["Very Weak","Weak","Moderate"]:
+    print("\nSuggested strong password:")
+    print(password_generate(14))    
+
 
 
        
 
          
+
         
